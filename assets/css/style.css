@@ -82,7 +82,10 @@ h3 { margin: 0 0 0.55rem; font-size: 1.15rem; }
   background: var(--paper);
   box-shadow: var(--shadow);
 }
-.teaser-image { width: 100%; overflow: hidden; aspect-ratio: 1224 / 476; object-fit: contain; }
+.teaser-image { width: min(100%, 1020px); margin-inline: auto; overflow: hidden; aspect-ratio: 1224 / 476; object-fit: contain; }
+@media (min-width: 1800px) {
+  .teaser-image { width: min(50%, 1020px); }
+}
 figcaption, .section-note, .gesture-card p, .resource-card span { color: var(--muted); font-size: 0.95rem; }
 
 .section { padding: 3.7rem 0; }
