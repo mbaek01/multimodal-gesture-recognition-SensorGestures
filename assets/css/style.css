@@ -11,7 +11,7 @@
   --soft: #eff6ff;
   --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
   --radius: 22px;
-  --maxw: 1120px;
+  --maxw: 1440px;
 }
 
 * { box-sizing: border-box; }
@@ -124,10 +124,10 @@ figcaption, .section-note, .gesture-card p, .resource-card span { color: var(--m
   gap: 1rem;
 }
 
-/* Your current layout: one large card per gesture. */
+/* Two gesture cards per row on wider screens. */
 .gesture-grid.gesture-grid-with-llr {
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
 }
 
 .gesture-card {
@@ -142,13 +142,13 @@ figcaption, .section-note, .gesture-card p, .resource-card span { color: var(--m
 /* Reset old video-card spacing for the new LLR layout. */
 .gesture-grid-with-llr .gesture-card h3 {
   padding: 0;
-  margin: 0 0 0.85rem;
-  font-size: 1.05rem;
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
 }
 
 .gesture-pair {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
   align-items: start;
 }
@@ -187,13 +187,6 @@ figcaption, .section-note, .gesture-card p, .resource-card span { color: var(--m
   background: #f3f4f6;
   padding: 0.12rem 0.28rem;
   border-radius: 6px;
-}
-
-/* Stack video and LLR chart on narrower screens. */
-@media (max-width: 800px) {
-  .gesture-pair {
-    grid-template-columns: 1fr;
-  }
 }
 
 .figure-card { padding: 0.75rem; overflow: hidden; }
