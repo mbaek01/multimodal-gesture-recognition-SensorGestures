@@ -1,0 +1,272 @@
+:root {
+  --bg: #f8fafc;
+  --paper: #ffffff;
+  --ink: #111827;
+  --muted: #5b6475;
+  --line: #e5e7eb;
+  --border: var(--line);
+  --card-bg: var(--paper);
+  --brand: #2563eb;
+  --brand-dark: #1d4ed8;
+  --soft: #eff6ff;
+  --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+  --radius: 22px;
+  --maxw: 1120px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top left, #dbeafe 0, rgba(219,234,254,0) 28rem), var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.65;
+}
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.92em; }
+.wrap { width: min(var(--maxw), calc(100% - 2rem)); margin-inline: auto; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(248, 250, 252, 0.88);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+  backdrop-filter: blur(12px);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+.brand { font-weight: 800; text-decoration: none; letter-spacing: -0.03em; }
+.nav-links { display: flex; gap: 1.15rem; font-size: 0.95rem; color: var(--muted); }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+.nav-toggle { display: none; }
+
+.hero { padding: 5.5rem 0 2.25rem; text-align: center; }
+.eyebrow { margin: 0 0 0.7rem; color: var(--brand); font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; }
+h1, h2, h3 { line-height: 1.15; letter-spacing: -0.04em; }
+h1 { margin: 0 auto; max-width: 1000px; font-size: clamp(2rem, 5.5vw, 4.45rem); }
+h2 { margin: 0; font-size: clamp(1.75rem, 3vw, 2.6rem); }
+h3 { margin: 0 0 0.55rem; font-size: 1.15rem; }
+.subtitle { max-width: 850px; margin: 1.15rem auto 1.4rem; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.32rem); }
+.authors, .affiliations { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem 0.7rem; color: var(--muted); }
+.authors a, .author-name { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+.authors a:hover { border-color: var(--brand); }
+.affiliations { margin-top: 0.5rem; }
+.button-row { margin-top: 1.6rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.68rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+  cursor: pointer;
+}
+.button:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.button.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+.button.primary:hover { background: var(--brand-dark); }
+.button.small { min-height: 36px; padding: 0.45rem 0.8rem; font-size: 0.9rem; }
+
+.media-hero { padding-bottom: 2rem; }
+.teaser-image, .figure-card, .gesture-card, .info-card, .highlight-card, .resource-card, .stat {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+.teaser-image { width: 100%; overflow: hidden; aspect-ratio: 1224 / 476; object-fit: contain; }
+figcaption, .section-note, .gesture-card p, .resource-card span { color: var(--muted); font-size: 0.95rem; }
+
+.section { padding: 3.7rem 0; }
+.section-heading { margin-bottom: 1.6rem; max-width: 820px; }
+.section-heading.center { margin-inline: auto; text-align: center; }
+.section-heading .section-note { margin: 0.75rem 0 0; }
+.two-col { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.4rem; align-items: stretch; }
+.two-col.align-start { align-items: start; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
+.highlight-card, .info-card { padding: 1.25rem; }
+.highlight-card { background: linear-gradient(135deg, #fff, var(--soft)); }
+.key-points {
+  margin: 0.85rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.key-points li + li { margin-top: 0.55rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.4rem; }
+.stat { padding: 1.1rem; text-align: center; }
+.stat strong { display: block; font-size: 1.45rem; letter-spacing: -0.03em; }
+.stat span { color: var(--muted); font-size: 0.92rem; }
+
+/* =========================
+   Gesture cards with LLR charts
+   ========================= */
+
+.gesture-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 0 0 1rem;
+}
+
+/* Default gesture grid, used only if you later make video-only cards. */
+.gesture-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+/* Your current layout: one large card per gesture. */
+.gesture-grid.gesture-grid-with-llr {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.gesture-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+/* Reset old video-card spacing for the new LLR layout. */
+.gesture-grid-with-llr .gesture-card h3 {
+  padding: 0;
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
+}
+
+.gesture-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.gesture-video-block video {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.9rem;
+  border: 1px solid var(--line);
+  background: #e5e7eb;
+}
+
+.llr-chart {
+  margin: 0;
+}
+
+.llr-chart img {
+  width: 100%;
+  display: block;
+  border-radius: 0.9rem;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.llr-chart figcaption {
+  margin-top: 0.45rem;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Optional: keep code paths readable while developing. */
+.gesture-card code {
+  background: #f3f4f6;
+  padding: 0.12rem 0.28rem;
+  border-radius: 6px;
+}
+
+/* Stack video and LLR chart on narrower screens. */
+@media (max-width: 800px) {
+  .gesture-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.figure-card { padding: 0.75rem; overflow: hidden; }
+.figure-card img { border-radius: calc(var(--radius) - 8px); width: 100%; background: #f1f5f9; }
+.figure-card figcaption { margin: 0.7rem 0.35rem 0.25rem; }
+.figure-card.wide { margin-bottom: 1rem; }
+.hardware-figure { margin: 0; }
+
+.data-table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 16px; border: 1px solid var(--line); background: var(--paper); }
+.data-table th, .data-table td { padding: 0.75rem 0.85rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.data-table th { background: #f8fafc; font-size: 0.9rem; }
+.data-table tr:last-child td { border-bottom: 0; }
+.results-table { margin-top: 1rem; }
+.resource-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.resource-card { padding: 1.1rem; text-decoration: none; }
+.resource-card strong, .resource-card span { display: block; }
+.resource-card:hover { transform: translateY(-1px); }
+.bibtex { margin: 0 0 0.9rem; overflow-x: auto; padding: 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: #0f172a; color: #e5e7eb; box-shadow: var(--shadow); }
+.footer { padding: 2rem 0; background: #0f172a; color: #cbd5e1; }
+.footer p { margin: 0.35rem 0; }
+.footer a { color: #ffffff; }
+
+@media (max-width: 900px) {
+  .two-col, .three-col, .stats-grid, .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gesture-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gesture-grid.gesture-grid-with-llr {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    border-radius: 999px;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .nav-links {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: 64px;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.7rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.65rem;
+  }
+
+  .hero {
+    padding-top: 3.5rem;
+  }
+
+  .gesture-grid,
+  .gesture-grid.gesture-grid-with-llr {
+    grid-template-columns: 1fr;
+  }
+}

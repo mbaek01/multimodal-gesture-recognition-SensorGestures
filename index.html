@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interpretable Multimodal Gesture Recognition for Drone and Mobile Robot Teleoperation</title>
+  <meta name="description" content="Project page for interpretable multimodal gesture recognition for drone and mobile robot teleoperation via log-likelihood ratio fusion." />
+  <meta name="keywords" content="gesture recognition, drone control, mobile robot teleoperation, wearable sensors, LLR fusion, ICRA 2026" />
+
+  <meta property="og:title" content="Interpretable Multimodal Gesture Recognition for Drone and Mobile Robot Teleoperation" />
+  <meta property="og:description" content="A multimodal wearable-sensor framework for robust and interpretable gesture-driven robot control." />
+  <meta property="og:image" content="assets/images/social_preview.svg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top">SensorGestures</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div id="nav-links" class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#gestures">Gestures</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#downloads">Resources</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <p class="eyebrow">ICRA 2026</p>
+      <h1>Interpretable Multimodal Gesture Recognition for Drone and Mobile Robot Teleoperation via Log-Likelihood Ratio Fusion</h1>
+      <p class="subtitle">Wearable IMU and capacitive sensing for robust, efficient, and interpretable gesture-driven robot control.</p>
+
+      <div class="authors" aria-label="Authors">
+        <span class="author-name">Seungyeol Baek</span><span>·</span>
+        <span class="author-name">Jaspreet Singh</span><span>·</span>
+        <span class="author-name">Lala Shakti Swarup Ray</span><span>·</span>
+        <span class="author-name">Hymalai Bello</span><span>·</span>
+        <span class="author-name">Paul Lukowicz</span><span>·</span>
+        <span class="author-name">Sungho Suh</span>
+      </div>
+
+      <p class="affiliations">Korea University · RPTU Kaiserslautern-Landau · DFKI</p>
+
+      <div class="button-row" aria-label="Project links">
+        <a class="button primary" href="assets/pdfs/_ICRA2026__Gesture_Recognition.pdf" target="_blank" rel="noopener">Paper</a>
+        <a class="button" href="https://github.com/mbaek01/Gesture-Recognition-for-Drone-Control" target="_blank" rel="noopener">Code</a>
+        <a class="button" href="https://drive.google.com/drive/folders/1Upovfk3jMOdw6yrOANtD0yolnImHpWP6?usp=sharing" target="_blank" rel="noopener">Dataset</a>
+        <a class="button" href="#gestures">Gesture Videos</a>
+        <a class="button" href="#citation">BibTeX</a>
+      </div>
+    </section>
+
+    <section class="media-hero wrap" aria-label="Project teaser figure">
+      <img class="teaser-image" src="assets/images/teaser.svg" alt="Project teaser figure for multimodal wearable-sensor gesture recognition" />
+    </section>
+
+    <section id="overview" class="section wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Overview</p>
+        <h2>Sensor-based gesture recognition for real-world teleoperation</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Abstract</h3>
+          <p>
+            Human operators are still frequently exposed to hazardous environments such as disaster zones and industrial facilities, where intuitive and reliable teleoperation of mobile robots and Unmanned Aerial Vehicles (UAVs) is essential. In this context, hands-free teleoperation enhances operator mobility and situational awareness, thereby improving safety in hazardous environments. While vision-based gesture recognition has been explored as one method for hands-free teleoperation, its performance often deteriorates under occlusions, lighting variations, and cluttered backgrounds, limiting its applicability in real-world operations. To overcome these limitations, we propose a multimodal gesture recognition framework that integrates inertial data (accelerometer, gyroscope, and orientation) from Apple Watches on both wrists with capacitive sensing signals from custom gloves. We design a late fusion strategy based on the log-likelihood ratio (LLR), which not only enhances recognition performance but also provides interpretability by quantifying modality-specific contributions. To support this research, we introduce a new dataset of 20 distinct gestures inspired by aircraft marshalling signals, comprising synchronized RGB video, IMU, and capacitive sensor data. Experimental results demonstrate that our framework achieves performance comparable to a state-of-the-art vision-based baseline while significantly reducing computational cost, model size, and training time, making it well suited for real-time robot control. We therefore underscore the potential of sensor-based multimodal fusion as a robust and interpretable solution for gesture-driven mobile robot and drone teleoperation.
+          </p>
+        </div>
+
+        <div class="highlight-card">
+          <h3>Key idea</h3>
+          <p>
+            Combine wrist IMU/orientation signals and capacitive glove signals through interpretable late fusion, so the system can classify gestures and show which modality contributed to each prediction.
+            Use wearable sensors as a robust, vision-independent control channel for gesture-driven robot teleoperation.
+          </p>
+          <ul class="key-points">
+            <li>Background: mobile robot and drone teleoperation is important in hazardous environments where operators need hands-free control.</li>
+            <li>Vision-based gesture recognition can degrade under occlusion, poor lighting, smoke, and cluttered backgrounds.</li>
+            <li>LLR fusion combines wrist IMU/orientation and capacitive glove signals while preserving modality-level evidence.</li>
+            <li>The sensor-based LLR fusion model matches the gesture recognition performance of the vision-based PoseConv3D baseline.</li>
+            <li>Compared with the video baseline, LLR fusion uses less compute, a smaller model, and faster training.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stats-grid" aria-label="Project highlights">
+        <div class="stat"><strong>20</strong><span>gesture classes</span></div>
+        <div class="stat"><strong>8</strong><span>modalities: IMU (accelerometer, gyroscope), quaternion, capacitive at left and right hands</span></div>
+        <div class="stat"><strong>LLR</strong><span>interpretable late fusion</span></div>
+        <div class="stat"><strong>Edge-ready</strong><span>efficient sensor model</span></div>
+      </div>
+    </section>
+
+    <section id="gestures" class="section wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Gesture Vocabulary</p>
+        <h2>20 aircraft-marshalling-inspired gestures</h2>
+        <p class="section-note">
+          Each gesture card shows a short demonstration clip together with the corresponding
+          LLR modality-contribution chart. The LLR chart visualizes which wearable sensor
+          modalities contributed most strongly to the model prediction.
+        </p>
+      </div>
+
+      <div class="gesture-grid gesture-grid-with-llr">
+
+        <article class="gesture-card">
+          <h3>00 · Brake</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/00_brake.jpg">
+                <source src="assets/videos/00_brake.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/00_brake_llr.png" alt="LLR modality contribution bar chart for the Brake gesture" loading="lazy" />
+              <figcaption>Mean LLR modality contribution over correctly predicted test samples.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>01 · Brake Fire Left</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/01_brake_fire_left.jpg">
+                <source src="assets/videos/01_brake_fire_left.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/01_brake_fire_left_llr.png" alt="LLR modality contribution bar chart for the Brake Fire Left gesture" loading="lazy" />
+              <figcaption>Mean LLR modality contribution over correctly predicted test samples.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>02 · Brake Fire Right</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/02_brake_fire_right.jpg">
+                <source src="assets/videos/02_brake_fire_right.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/02_brake_fire_right_llr.png" alt="LLR modality contribution bar chart for the Brake Fire Right gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Brake Fire Right.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>03 · Come Close</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/03_come_close.jpg">
+                <source src="assets/videos/03_come_close.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/03_come_close_llr.png" alt="LLR modality contribution bar chart for the Come Close gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Come Close.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>04 · Cut Engine Left</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/04_cut_engine_left.jpg">
+                <source src="assets/videos/04_cut_engine_left.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/04_cut_engine_left_llr.png" alt="LLR modality contribution bar chart for the Cut Engine Left gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Cut Engine Left.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>05 · Cut Engine Right</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/05_cut_engine_right.jpg">
+                <source src="assets/videos/05_cut_engine_right.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/05_cut_engine_right_llr.png" alt="LLR modality contribution bar chart for the Cut Engine Right gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Cut Engine Right.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>06 · Down</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/06_down.jpg">
+                <source src="assets/videos/06_down.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/06_down_llr.png" alt="LLR modality contribution bar chart for the Down gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Down.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>07 · Engine Start Left</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/07_engine_start_left.jpg">
+                <source src="assets/videos/07_engine_start_left.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/07_engine_start_left_llr.png" alt="LLR modality contribution bar chart for the Engine Start Left gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Engine Start Left.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>08 · Engine Start Right</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/08_engine_start_right.jpg">
+                <source src="assets/videos/08_engine_start_right.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/08_engine_start_right_llr.png" alt="LLR modality contribution bar chart for the Engine Start Right gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Engine Start Right.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>09 · Follow</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/09_follow.jpg">
+                <source src="assets/videos/09_follow.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/09_follow_llr.png" alt="LLR modality contribution bar chart for the Follow gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Follow.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>10 · Left</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/10_left.jpg">
+                <source src="assets/videos/10_left.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/10_left_llr.png" alt="LLR modality contribution bar chart for the Left gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Left.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>11 · Move Away</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/11_move_away.jpg">
+                <source src="assets/videos/11_move_away.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/11_move_away_llr.png" alt="LLR modality contribution bar chart for the Move Away gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Move Away.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>12 · Negative</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/12_negative.jpg">
+                <source src="assets/videos/12_negative.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/12_negative_llr.png" alt="LLR modality contribution bar chart for the Negative gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Negative.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>13 · Release Brake</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/13_release_brake.jpg">
+                <source src="assets/videos/13_release_brake.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/13_release_brake_llr.png" alt="LLR modality contribution bar chart for the Release Brake gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Release Brake.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>14 · Right</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/14_right.jpg">
+                <source src="assets/videos/14_right.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/14_right_llr.png" alt="LLR modality contribution bar chart for the Right gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Right.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>15 · Slow Down</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/15_slow_down.jpg">
+                <source src="assets/videos/15_slow_down.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/15_slow_down_llr.png" alt="LLR modality contribution bar chart for the Slow Down gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Slow Down.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>16 · Stop</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/16_stop.jpg">
+                <source src="assets/videos/16_stop.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/16_stop_llr.png" alt="LLR modality contribution bar chart for the Stop gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Stop.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>17 · Straight</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/17_straight.jpg">
+                <source src="assets/videos/17_straight.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/17_straight_llr.png" alt="LLR modality contribution bar chart for the Straight gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Straight.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>18 · Take Photo</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/18_take_photo.jpg">
+                <source src="assets/videos/18_take_photo.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/18_take_photo_llr.png" alt="LLR modality contribution bar chart for the Take Photo gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Take Photo.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="gesture-card">
+          <h3>19 · Up</h3>
+          <div class="gesture-pair">
+            <div class="gesture-video-block">
+              <video controls muted loop playsinline preload="metadata" poster="assets/images/posters/19_up.jpg">
+                <source src="assets/videos/19_up.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figure class="llr-chart">
+              <img src="assets/images/llr/19_up_llr.png" alt="LLR modality contribution bar chart for the Up gesture" loading="lazy" />
+              <figcaption>LLR modality contribution for Up.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="dataset" class="section wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Dataset & Hardware</p>
+        <h2>Multimodal capture with wearable sensors and RGB video</h2>
+      </div>
+      <div class="two-col align-start">
+        <div>
+          <h3>Dataset and capture setup</h3>
+          <p>
+            We record synchronized wearable-sensor and RGB video data for 20 aircraft-marshalling-inspired commands for drone and mobile robot teleoperation. The glove hardware builds on the <a href="https://www.dfki.de/en/web/research/projects-and-publications/publication/14382" target="_blank" rel="noopener">CaptAinGlove</a> textile capacitive-and-inertial glove design for real-time drone-control gestures.
+          </p>
+          <table class="data-table">
+            <thead><tr><th>Item</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>Gestures</td><td>20 gesture classes selected for clear hand and arm motions inspired by aircraft marshalling signals.</td></tr>
+              <tr><td>Participants</td><td>11 participants recorded over five sessions, with four randomized repetitions of each gesture per session.</td></tr>
+              <tr><td>Wrist sensors</td><td>Apple Watch Series 7 devices on both wrists provide accelerometer, gyroscope, and quaternion orientation streams at approximately 100 Hz.</td></tr>
+              <tr><td>Glove sensors</td><td>Textile sensing gloves provide four capacitive channels per hand through an FDC2214 converter at approximately 50 Hz, together with glove IMU signals.</td></tr>
+              <tr><td>Video</td><td>A ZED Mini camera records synchronized RGB video at 30 fps for baseline comparison and visualization.</td></tr>
+              <tr><td>Release</td><td><a href="https://drive.google.com/drive/folders/1Upovfk3jMOdw6yrOANtD0yolnImHpWP6?usp=sharing" target="_blank" rel="noopener">Download Link (Google Drive)</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="figure-card hardware-figure">
+          <img src="assets/images/hardware.svg" alt="Hardware setup with textile sensing gloves, Apple Watch devices, and capacitive sensor channels" />
+          <figcaption>Hardware setup with textile sensing gloves, Apple Watch wrist sensors, and synchronized RGB video capture.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="method" class="section wrap">
+      <div class="section-heading center">
+        <p class="eyebrow">Method</p>
+        <h2>Per-modality encoders with interpretable late fusion</h2>
+        <p class="section-note">Each left- and right-hand sensor stream is encoded independently, then fused to predict the gesture label while retaining modality-level evidence.</p>
+      </div>
+      <figure class="figure-card wide">
+        <img src="assets/images/method.svg" alt="Sensor-based gesture recognition framework architecture" />
+        <figcaption> Sensor-based gesture recognition framework. Wrist IMU/orientation and capacitive glove signals are processed by modality-specific encoders, then combined through LLR fusion or self-attention fusion. LLR fusion additionally exposes modality-level evidence for each predicted gesture. </figcaption>
+      </figure>
+      <div class="three-col">
+        <div class="info-card"><h3>1. Encode each modality</h3><p>Each sensor stream is processed independently to extract local and temporal gesture features.</p></div>
+        <div class="info-card"><h3>2. Fuse predictions</h3><p>LLR fusion combines class evidence from each modality while preserving modality-specific contribution scores.</p></div>
+        <div class="info-card"><h3>3. Explain decisions</h3><p>Visualize LLR contribution and attention patterns to diagnose which signals drove a prediction.</p></div>
+      </div>
+    </section>
+
+    <section id="results" class="section wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Results</p>
+        <h2>Recognition performance and computational efficiency</h2>
+        <p class="section-note">
+          Interpretability is shown directly in the gesture cards above, where each gesture video
+          is paired with its mean LLR modality-contribution chart.
+        </p>
+      </div>
+
+      <table class="data-table results-table">
+        <thead>
+          <tr><th>Model</th><th>Split</th><th>F1 Score</th><th>Precision</th><th>Recall</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>LLR Fusion (sensor)</td><td>LOSO</td><td>95.40 ± 5.91</td><td>95.99 ± 4.84</td><td>95.52 ± 5.85</td></tr>
+          <tr><td>Self-Attention Fusion (sensor)</td><td>LOSO</td><td>94.42 ± 5.20</td><td>95.05 ± 4.44</td><td>94.45 ± 5.09</td></tr>
+          <tr><td>PoseConv3D (video)</td><td>LOSO</td><td>94.70 ± 2.33</td><td>95.03 ± 1.93</td><td>94.73 ± 2.35</td></tr>
+          <tr><td>LLR Fusion (sensor)</td><td>LOPO</td><td>93.59 ± 5.20</td><td>94.45 ± 4.70</td><td>93.59 ± 5.31</td></tr>
+          <tr><td>Self-Attention Fusion (sensor)</td><td>LOPO</td><td>92.97 ± 6.11</td><td>94.40 ± 4.73</td><td>93.10 ± 5.98</td></tr>
+          <tr><td>PoseConv3D (video)</td><td>LOPO</td><td>93.39 ± 5.44</td><td>95.09 ± 3.40</td><td>93.75 ± 4.91</td></tr>
+        </tbody>
+      </table>
+
+      <figure class="figure-card wide">
+        <img src="assets/images/efficiency.svg" alt="Recognition performance and computational efficiency summary" />
+        <figcaption>Computational resource comparison between sensor-based models (orange) and the vision-based PoseConv3D baseline (blue). From left to right: GFLOPs per inference, model size, and average training time across dataset split variations.</figcaption>      
+      </figure>
+    </section>
+
+    <section id="downloads" class="section wrap">
+      <div class="section-heading center">
+        <p class="eyebrow">Resources</p>
+        <h2>Downloads</h2>
+        <p class="section-note">
+          Paper, code, dataset, and citation details are collected here.
+        </p>
+      </div>
+
+      <div class="resource-grid">
+        <a class="resource-card" href="assets/pdfs/_ICRA2026__Gesture_Recognition.pdf" target="_blank" rel="noopener">
+          <strong>Paper PDF</strong>
+          <span>Project paper PDF</span>
+        </a>
+
+        <a class="resource-card" href="https://github.com/mbaek01/Gesture-Recognition-for-Drone-Control" target="_blank" rel="noopener">
+          <strong>Code</strong>
+          <span>Preprocessing, training, and evaluation code</span>
+        </a>
+
+        <a class="resource-card" href="https://drive.google.com/drive/folders/1Upovfk3jMOdw6yrOANtD0yolnImHpWP6?usp=sharing" target="_blank" rel="noopener">
+          <strong>Dataset</strong>
+          <span>Synchronized RGB, IMU, and capacitive sensor data</span>
+        </a>
+
+        <a class="resource-card" href="#citation">
+          <strong>BibTeX</strong>
+          <span>Citation information</span>
+        </a>
+      </div>
+    </section>
+    
+    <section id="citation" class="section wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Citation</p>
+        <h2>BibTeX</h2>
+      </div>
+      <pre class="bibtex"><code id="bibtex-code">@inproceedings{baek2026interpretable,
+  title={Interpretable Multimodal Gesture Recognition for Drone and Mobile Robot Teleoperation via Log-Likelihood Ratio Fusion},
+  author={Baek, Seungyeol and Singh, Jaspreet and Ray, Lala Shakti Swarup and Bello, Hymalai and Lukowicz, Paul and Suh, Sungho},
+  booktitle={Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)},
+  year={2026}
+}</code></pre>
+      <button class="button small" type="button" data-action="copy-bibtex">Copy BibTeX</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong>Acknowledgments.</strong> This work was supported by the IITP grant funded by the MSIT (RS-2019-II190079, AI Graduate School Program (Korea University) and IITP-2026-RS-2024-00436857, IITP-ITRC), and by the Technology Innovation Program (RS-2025-25453819) funded by the MOTIR. This work was also supported by the BMBF in the project CrossAct (01IW25001).</p>
+      <p><strong>Contact.</strong> For questions, contact <a href="mailto:mbaek01@korea.ac.kr">mbaek01@korea.ac.kr</a> or corresponding author <a href="mailto:sungho_suh@korea.ac.kr">sungho_suh@korea.ac.kr</a>.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
